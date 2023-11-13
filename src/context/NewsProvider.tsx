@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import axios from "axios";
 import { useState, useEffect, createContext } from "react";
 
 const NewsContex = createContext({});
@@ -21,11 +22,9 @@ const NewProvider = ({ children }: Props) => {
         import.meta.env.VITE_API_KEY
       }
       `;
-      const response = await fetch(`${url}`);
-      const result = await response.json();
-
-      setNews(result.articles);
-      setTotalNews(result.totalResults);
+      const { data } = await axios(url);
+      setNews(data.articles);
+      setTotalNews(data.totalResults);
       setPage(1);
     };
     getApi();
@@ -38,11 +37,9 @@ const NewProvider = ({ children }: Props) => {
         import.meta.env.VITE_API_KEY
       }
       `;
-      const response = await fetch(`${url}`);
-      const result = await response.json();
-
-      setNews(result.articles);
-      setTotalNews(result.totalResults);
+      const { data } = await axios(url);
+      setNews(data.articles);
+      setTotalNews(data.totalResults);
     };
     getApi();
   }, [page]);
@@ -55,9 +52,6 @@ const NewProvider = ({ children }: Props) => {
   };
 
   const handleChangePagination = (e: any, value: any) => {
-    console.log("====================================");
-    console.log(e);
-    console.log("====================================");
     setPage(value);
   };
 
