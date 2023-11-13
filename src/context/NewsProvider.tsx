@@ -23,7 +23,7 @@ const NewProvider = ({ children }: Props) => {
       }
       `;
       const { data } = await axios.get(url, {
-        headers: { "Accept-Encoding": "gzip,deflate,compress" },
+        headers: { "Accept-Encoding: gzip, deflate": "br" },
       });
       setNews(data.articles);
       setTotalNews(data.totalResults);
