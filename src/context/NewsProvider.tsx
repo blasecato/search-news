@@ -22,7 +22,9 @@ const NewProvider = ({ children }: Props) => {
         import.meta.env.VITE_API_KEY
       }
       `;
-      const { data } = await axios(url);
+      const { data } = await axios.get(url, {
+        headers: { "Accept-Encoding": "gzip,deflate,compress" },
+      });
       setNews(data.articles);
       setTotalNews(data.totalResults);
       setPage(1);
@@ -37,7 +39,9 @@ const NewProvider = ({ children }: Props) => {
         import.meta.env.VITE_API_KEY
       }
       `;
-      const { data } = await axios(url);
+      const { data } = await axios.get(url, {
+        headers: { "Accept-Encoding": "gzip,deflate,compress" },
+      });
       setNews(data.articles);
       setTotalNews(data.totalResults);
     };
