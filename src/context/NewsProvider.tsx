@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import axios from "axios";
 import { useState, useEffect, createContext } from "react";
 
 const NewsContex = createContext({});
@@ -22,11 +21,11 @@ const NewProvider = ({ children }: Props) => {
         import.meta.env.VITE_API_KEY
       }
       `;
-      const { data } = await axios.get(url, {
-        headers: { "Accept-Encoding": "br" },
-      });
-      setNews(data.articles);
-      setTotalNews(data.totalResults);
+      const response = await fetch(`${url}`);
+      const result = await response.json();
+
+      setNews(result.articles);
+      setTotalNews(result.totalResults);
       setPage(1);
     };
     getApi();
@@ -39,11 +38,11 @@ const NewProvider = ({ children }: Props) => {
         import.meta.env.VITE_API_KEY
       }
       `;
-      const { data } = await axios.get(url, {
-        headers: { "Accept-Encoding": "br" },
-      });
-      setNews(data.articles);
-      setTotalNews(data.totalResults);
+      const response = await fetch(`${url}`);
+      const result = await response.json();
+
+      setNews(result.articles);
+      setTotalNews(result.totalResults);
     };
     getApi();
   }, [page]);
