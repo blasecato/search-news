@@ -52,6 +52,9 @@ const NewProvider = ({ children }: Props) => {
   };
 
   const handleChangePagination = (e: any, value: any) => {
+    console.log("====================================");
+    console.log(e);
+    console.log("====================================");
     setPage(value);
   };
 
